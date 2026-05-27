@@ -25,6 +25,30 @@
 
 ---
 
+## 📁 Repository Structure
+
+```
+SIEM-Deployment/
+└── screenshots/
+    ├── network-diagram.jpg
+    ├── wazuh-dashboard.jpg
+    ├── agent-deployment-linux.jpg
+    ├── agent-installation-kali.jpg
+    ├── agent-active-kali.jpg
+    ├── agent-deployment-windows.jpg
+    ├── endpoints.jpg
+    ├── endpoints-both.jpg
+    ├── mitre-attck.jpg
+    ├── mitre-attck-dashboard.jpg
+    ├── mitre-attck-framework.jpg
+    ├── mitre-attck-intelligence.jpg
+    ├── vulnerability-detection.jpg
+    ├── threat-hunting.jpg
+    └── file-integrity.jpg
+```
+
+---
+
 ## 🏗️ Network Architecture
 
 ![Network Diagram](screenshots/network-diagram.jpg)
@@ -59,6 +83,13 @@
 
 ### Last 24 Hours Alerts
 
+| Severity | Count | Rule Level |
+|---|---|---|
+| 🔴 Critical | 0 | Level 15 or higher |
+| 🟠 High | 0 | Level 12 to 14 |
+| 🟡 Medium | 22 | Level 7 to 11 |
+| 🟢 Low | 12 | Level 0 to 6 |
+
 ### Security Modules Active
 - ✅ Configuration Assessment
 - ✅ Malware Detection
@@ -75,40 +106,17 @@
 
 ![Linux Agent Deployment](screenshots/agent-deployment-linux.jpg)
 
-```bash
-# Download and install Wazuh agent on Kali Linux
-wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/\
-wazuh-agent_4.11.2-1_amd64.deb && \
-sudo WAZUH_MANAGER='192.168.232.129' \
-WAZUH_AGENT_NAME='Linux-Kali' \
-dpkg -i ./wazuh-agent_4.11.2-1_amd64.deb
-```
-
 ![Agent Installation Kali](screenshots/agent-installation-kali.jpg)
 
-```bash
-# Enable and start the agent
-sudo systemctl daemon-reload
-sudo systemctl enable wazuh-agent
-sudo systemctl start wazuh-agent
-
-# Verify agent is running
-sudo systemctl status wazuh-agent
-```
-
 ![Agent Active Kali](screenshots/agent-active-kali.jpg)
-
----
 
 ### Step 2 — Deploy Agent on Windows 11
 
 ![Windows Agent Deployment](screenshots/agent-deployment-windows.jpg)
 
----
-
 ### Step 3 — Verify All Endpoints Connected
 
-**First Agent Connected (Kali Linux):**
+**First Agent Connected — Kali Linux:**
 
 ![Endpoints](screenshots/endpoints.jpg)
 
@@ -130,6 +138,13 @@ sudo systemctl status wazuh-agent
 
 ### Tactics Detected on Kali Linux
 
+| Tactic | Alerts | Technique |
+|---|---|---|
+| 🛡️ Defense Evasion | 3 | T1562.001 - Disable or Modify Tools |
+| ⬆️ Privilege Escalation | 2 | T1548.003 - Sudo and Sudo Caching |
+| 🔐 Persistence | Active | T1556.003 - Pluggable Authentication Modules |
+| 🚪 Initial Access | 1 | T1078 - Valid Accounts |
+
 ### Framework — Tactics & Techniques
 ![MITRE ATT&CK Framework](screenshots/mitre-attck-framework.jpg)
 
@@ -144,7 +159,16 @@ sudo systemctl status wazuh-agent
 
 ### Severity Summary
 
+| Severity | Count |
+|---|---|
+| 🔴 Critical | 1 |
+| 🟠 High | 31 |
+| 🟡 Medium | 37 |
+| 🟢 Low | 0 |
+| **Total** | **69** |
+
 ### Top CVEs Detected
+
 | CVE | Severity |
 |---|---|
 | CVE-2008-1178 | High |
@@ -154,6 +178,7 @@ sudo systemctl status wazuh-agent
 | CVE-2012-1664 | High |
 
 ### Most Vulnerable Packages
+
 | Package | Vulnerabilities |
 |---|---|
 | VLC Media Player 3.0.8 | 57 |
@@ -167,11 +192,23 @@ sudo systemctl status wazuh-agent
 
 ![Threat Hunting](screenshots/threat-hunting.jpg)
 
+| Detail | Info |
+|---|---|
+| **Total Events** | 1,304 hits |
+| **Event Types** | Windows Logon Success, Software Protection, Service Changes |
+
 ---
 
 ## 📁 File Integrity Monitoring (Kali Linux)
 
 ![File Integrity Monitoring](screenshots/file-integrity.jpg)
+
+| Monitor | Status |
+|---|---|
+| Files Added | Tracked |
+| Files Modified | Detected |
+| Files Deleted | No results |
+| Active Users | root 100% |
 
 ---
 
